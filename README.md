@@ -1,4 +1,9 @@
 # Feelings-Diary
 CMSC436 Final team project
 
-Group Members: Atul Shaurya, Katherine Sebina, Pauline H.
+Project name: Feelings Diary
+Group number: 48
+
+Group Members:-
+
+Member 1: Atul Shaurya
