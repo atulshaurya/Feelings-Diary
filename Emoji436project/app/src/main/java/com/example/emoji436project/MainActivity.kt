@@ -1,10 +1,12 @@
 package com.example.emoji436project
 
+import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.FrameLayout
+import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -17,17 +19,37 @@ class MainActivity : AppCompatActivity() {
     private var  selected_emoji_v5 = 0;
     private var  selected_emoji_v6 = 0;
     private var  selected_emoji_v7 = 0;
+
+    val exampleList: ArrayList<ExampleItem> = arrayListOf<ExampleItem>()
+    val adapter = MyAdapter(exampleList)
+    var newItem = ExampleItem(R.drawable.emptyavatar,0,"User","NEW ITEM")
+    var s_emoji:Int = 0
+
     private val TAG = "MyActivity"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
+        Log.i(TAG, "life is good");
         val imageView2: ImageView = findViewById<View>(R.id.imageView2) as ImageView
         val imageView3: ImageView = findViewById<View>(R.id.imageView3) as ImageView
         val imageView5: ImageView = findViewById<View>(R.id.imageView5) as ImageView
         val imageView6: ImageView = findViewById<View>(R.id.imageView6) as ImageView
         val imageView7: ImageView = findViewById<View>(R.id.imageView7) as ImageView
+        val button1: Button = findViewById<View>(R.id.button) as Button
 
+
+        button1.setOnClickListener(object: View.OnClickListener{
+            override fun onClick(view: View?) {
+                Log.i(TAG, "clicked button");
+                Log.i(TAG, "opened public feed")
+
+                var mEdit: EditText = findViewById<EditText>(R.id.editTextTextMultiLine2) as EditText
+                val post: String = mEdit.getText().toString()
+                openPublicFeed(s_emoji, post)
+            }
+        })
         imageView2.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View) {
                 selected_emoji_v2++;
@@ -38,6 +60,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 else {
                     makeBigger(imageView2)
+                    s_emoji = R.drawable.first_mood
                     Log.v(TAG, "even:" + selected_emoji_v2);
                     if (selected_emoji_v3%2 == 1){
                         selected_emoji_v3++
@@ -71,6 +94,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 else {
                     makeBigger(imageView3)
+                    s_emoji = R.drawable.second_mood
                     Log.v(TAG, "odd:" + selected_emoji_v3);
 
                     if (selected_emoji_v2%2 == 1){
@@ -104,6 +128,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 else {
                     makeBigger(imageView5)
+                    s_emoji = R.drawable.fourth_mood
                     Log.v(TAG, "odd:" + selected_emoji_v5);
                 }
 
@@ -136,6 +161,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 else {
                     makeBigger(imageView6)
+                    s_emoji = R.drawable.fifth_mood
                     Log.v(TAG, "odd:" + selected_emoji_v6);
 
                     if (selected_emoji_v3%2 == 1){
@@ -169,6 +195,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 else {
                     makeBigger(imageView7)
+                    s_emoji = R.drawable.third_mood
                     Log.v(TAG, "odd:" + selected_emoji_v7);
 
                     if (selected_emoji_v3%2 == 1){
@@ -206,6 +233,27 @@ class MainActivity : AppCompatActivity() {
         layout.height = 150
         layout.width = 150
         imageView.setLayoutParams(layout)
+    }
+
+    private fun openPublicFeed(
+        emoji: Int,
+        post: String
+    ) {
+        val images = ArrayList<Int>()
+//        if (newItem.imageResource != null){
+//            images.add(0,newItem.imageResource!!)
+//        }
+//        if (newItem.imageResource2 != null){
+//            images.add(1,newItem.imageResource2!!)
+//        }
+
+
+        val intent = Intent(this, PublicFeed::class.java)
+        intent.putExtra("emoji", emoji)
+        intent.putExtra("User", "User")
+        intent.putExtra("content", post)
+        startActivity(intent)
+
     }
 
 
