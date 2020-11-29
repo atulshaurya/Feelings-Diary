@@ -4,9 +4,11 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import org.w3c.dom.Text
 
 class MyAdapter(private val exampleList: List<ExampleItem>) :
     RecyclerView.Adapter<MyAdapter.ExampleViewHolder>() {
@@ -20,7 +22,6 @@ class MyAdapter(private val exampleList: List<ExampleItem>) :
         val textView1: TextView = itemView.findViewById(R.id.text_view_1)
 
         val textView2: TextView = itemView.findViewById(R.id.text_view_2)
-
     }
 
 

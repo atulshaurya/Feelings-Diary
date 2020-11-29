@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 
@@ -19,10 +20,6 @@ class MainActivity : AppCompatActivity() {
     private var  selected_emoji_v5 = 0;
     private var  selected_emoji_v6 = 0;
     private var  selected_emoji_v7 = 0;
-
-    val exampleList: ArrayList<ExampleItem> = arrayListOf<ExampleItem>()
-    val adapter = MyAdapter(exampleList)
-    var newItem = ExampleItem(R.drawable.emptyavatar,0,"User","NEW ITEM")
     var s_emoji:Int = 0
 
     private val TAG = "MyActivity"
@@ -239,15 +236,6 @@ class MainActivity : AppCompatActivity() {
         emoji: Int,
         post: String
     ) {
-        val images = ArrayList<Int>()
-//        if (newItem.imageResource != null){
-//            images.add(0,newItem.imageResource!!)
-//        }
-//        if (newItem.imageResource2 != null){
-//            images.add(1,newItem.imageResource2!!)
-//        }
-
-
         val intent = Intent(this, PublicFeed::class.java)
         intent.putExtra("emoji", emoji)
         intent.putExtra("User", "User")

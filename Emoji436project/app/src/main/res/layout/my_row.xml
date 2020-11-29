@@ -79,6 +79,29 @@
 
             app:srcCompat="@drawable/first_mood" />
 
+        <Button
+            android:id="@+id/commentButton"
+            android:layout_width="62dp"
+            android:layout_height="37dp"
+            android:layout_marginStart="135dp"
+            android:layout_marginLeft="135dp"
+            android:layout_toEndOf="@+id/text_view_2"
+            android:text="Add Comment"
+            android:textSize="5dp" />
+
+        <EditText
+            android:id="@+id/commentText"
+            android:layout_width="61dp"
+            android:layout_height="33dp"
+            android:layout_below="@+id/commentButton"
+            android:layout_marginStart="136dp"
+            android:layout_marginTop="2dp"
+            android:layout_toEndOf="@+id/text_view_2"
+            android:ems="10"
+            android:hint="Write comment"
+            android:textSize="7dp"
+            android:inputType="textMultiLine" />
+
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>
