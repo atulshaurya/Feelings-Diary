@@ -24,6 +24,8 @@
         </activity>
         <activity android:name="com.example.diary.LoginActivity" />
         <activity android:name="com.example.diary.RegistrationActivity" />
+        <activity android:name="com.example.diary.ui.home.PublicFeed" />
+
     </application>
 
 </manifest>

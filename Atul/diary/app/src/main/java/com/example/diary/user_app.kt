@@ -8,6 +8,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 
+// First page when login was successful
 class user_app : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
