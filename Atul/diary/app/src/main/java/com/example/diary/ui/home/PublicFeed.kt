@@ -9,11 +9,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.diary.ExampleItem
+import com.example.diary.ui.home.MyAdapter
 import com.example.diary.R
 
 class PublicFeed : AppCompatActivity() {
     val exampleList: ArrayList<ExampleItem> = arrayListOf<ExampleItem>()
-    var adapter = MyAdapter(exampleList)
+    var adapter = com.example.diary.ui.home.MyAdapter(exampleList)
     var first_item = true
     var index = 0
 

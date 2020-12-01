@@ -9,6 +9,7 @@ import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.diary.ui.dashboard.MainActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -27,7 +28,7 @@ class LoginActivity : AppCompatActivity()  {
         setContentView(R.layout.login)
 
         mDatabase = FirebaseDatabase.getInstance()
-        mDatabaseReference = mDatabase!!.reference.child("Users")
+        mDatabaseReference = mDatabase!!.reference.child("data")
         mAuth = FirebaseAuth.getInstance()
 
         userEmail = findViewById(R.id.email)
@@ -66,7 +67,7 @@ class LoginActivity : AppCompatActivity()  {
                     Toast.makeText(applicationContext, "Login successful!", Toast.LENGTH_LONG)
                         .show()
                     val uid = mAuth!!.uid
-                    val it =  Intent(this@LoginActivity, user_app::class.java)
+                    val it =  Intent(this@LoginActivity, com.example.diary.ui.dashboard.MainActivity::class.java)
                     it.putExtra(USER_EMAIL, userEmail.toString())
                     it.putExtra(USER_ID, uid)
                     startActivity(it)

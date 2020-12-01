@@ -22,7 +22,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
 
-class MainActivity : FragmentActivity() {
+class MainActivity : AppCompatActivity() {
     private lateinit var yourBitmap: Bitmap
     private var  selected_emoji_v2 = 0;
     private var  selected_emoji_v3 = 0;
