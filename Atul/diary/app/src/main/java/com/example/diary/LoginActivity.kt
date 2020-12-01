@@ -10,12 +10,12 @@ import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
-//import com.google.firebase.database.DatabaseReference
-//import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 
 class LoginActivity : AppCompatActivity()  {
-    //private var mDatabaseReference: DatabaseReference? = null
-    //private var mDatabase: FirebaseDatabase? = null
+    private var mDatabaseReference: DatabaseReference? = null
+    private var mDatabase: FirebaseDatabase? = null
     private var userEmail: EditText? = null
     private var userPassword: EditText? = null
     private var loginBtn: Button? = null
@@ -26,8 +26,8 @@ class LoginActivity : AppCompatActivity()  {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login)
 
-        //mDatabase = FirebaseDatabase.getInstance()
-        //mDatabaseReference = mDatabase!!.reference.child("Users")
+        mDatabase = FirebaseDatabase.getInstance()
+        mDatabaseReference = mDatabase!!.reference.child("Users")
         mAuth = FirebaseAuth.getInstance()
 
         userEmail = findViewById(R.id.email)
