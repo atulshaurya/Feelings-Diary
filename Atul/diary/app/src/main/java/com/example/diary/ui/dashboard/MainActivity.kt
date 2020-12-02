@@ -286,6 +286,7 @@ class MainActivity : AppCompatActivity() {
         intent.putExtra("user", intent.getStringExtra(USER_EMAIL))
         intent.putExtra("content", post)
         intent.putExtra(USER_ID, uid)
+        intent.putExtra(USER_EMAIL, username)
         startActivity(intent)
 
         // ADDED
