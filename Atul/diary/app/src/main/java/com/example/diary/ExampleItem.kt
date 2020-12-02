@@ -1,3 +1,3 @@
 package com.example.diary
 
-data class ExampleItem(var imageResource: Int?, var imageResource2: Int?, val text1: String?, val text2: String?)
+data class ExampleItem(var time: String?, var avatar: Int?, var emoji: Int?, var username: String?, var feelings: String?)

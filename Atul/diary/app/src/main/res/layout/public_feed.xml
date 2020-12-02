@@ -10,10 +10,12 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
-        android:clipToPadding="false"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/my_row"/>
+        android:clipToPadding="false"
+        tools:layout_editor_absoluteX="88dp"
+        tools:layout_editor_absoluteY="-16dp"
+        tools:listitem="@layout/my_row" />
 
     <Button
         android:id="@+id/button4"

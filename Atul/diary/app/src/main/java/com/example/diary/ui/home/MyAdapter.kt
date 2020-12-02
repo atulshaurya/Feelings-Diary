@@ -47,17 +47,17 @@ class MyAdapter(private val exampleList: List<ExampleItem>) :
         val currentItem = exampleList[position]
 
 
-        if(currentItem.imageResource!=null){
-            holder.imageView1.setImageResource(currentItem.imageResource!!)
+        if(currentItem.avatar!=null){
+            holder.imageView1.setImageResource(currentItem.avatar!!)
         }
 
-        if(currentItem.imageResource2!=null){
-            holder.imageView2.setImageResource(currentItem.imageResource2!!)
+        if(currentItem.emoji!=null){
+            holder.imageView2.setImageResource(currentItem.emoji!!)
         }
 
-        holder.textView1.text = currentItem.text1
+        holder.textView1.text = currentItem.username
 
-        holder.textView2.text = currentItem.text2
+        holder.textView2.text = currentItem.feelings
 
     }
 
