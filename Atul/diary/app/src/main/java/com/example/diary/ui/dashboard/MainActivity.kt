@@ -30,14 +30,19 @@ class MainActivity : AppCompatActivity() {
     private var  selected_emoji_v6 = 0;
     private var  selected_emoji_v7 = 0;
 
+
     val exampleList: ArrayList<ExampleItem> = arrayListOf<ExampleItem>()
     val adapter = MyAdapter(exampleList)
-    var newItem = ExampleItem(R.drawable.emptyavatar,0,"User","NEW ITEM")
+    var newItem = ExampleItem(System.currentTimeMillis().toString(), R.drawable.emptyavatar,0,"User","NEW ITEM")
     var s_emoji:Int = 0
 
 
     /* ADDED */
     private lateinit var database: DatabaseReference
+    private lateinit var uid: String
+    private lateinit var time: String
+    private lateinit var username: String
+
 
 
 
@@ -51,7 +56,10 @@ class MainActivity : AppCompatActivity() {
 
         // ADDED
         database = FirebaseDatabase.getInstance().getReference("data")
+        uid = intent.getStringExtra(USER_ID)!!
+        username = intent.getStringExtra(USER_EMAIL)
 
+        time = System.currentTimeMillis().toString()
 
 
 
@@ -275,16 +283,22 @@ class MainActivity : AppCompatActivity() {
 
         val intent = Intent(this, PublicFeed::class.java)
         intent.putExtra("emoji", emoji)
-        intent.putExtra("User", "User")
+        intent.putExtra("user", intent.getStringExtra(USER_EMAIL))
         intent.putExtra("content", post)
+        intent.putExtra(USER_ID, uid)
         startActivity(intent)
 
         // ADDED
-        val id = database.child("posts").push().key
-        database.child("posts").setValue(id)
-        newItem = ExampleItem(R.drawable.emptyavatar,s_emoji,"Katherine", post)
+        val id = database.child(uid).push().key
+        database.child(uid).setValue(id)
+        newItem = ExampleItem(time, R.drawable.emptyavatar,s_emoji, username, post)
 
-        database.child("posts").child(id!!).setValue(newItem)
+        database.child(uid).child(id!!).setValue(newItem)
+    }
+
+    companion object {
+        const val USER_ID = "com.example.diary.userid"
+        const val USER_EMAIL = "com.example.diary.useremail"
     }
 
 

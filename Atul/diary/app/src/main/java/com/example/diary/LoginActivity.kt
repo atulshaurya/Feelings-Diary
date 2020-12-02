@@ -69,7 +69,7 @@ class LoginActivity : AppCompatActivity()  {
                     val uid = mAuth!!.uid
                     val it =  Intent(this@LoginActivity, com.example.diary.ui.dashboard.MainActivity::class.java)
                     it.putExtra(USER_EMAIL, userEmail.toString())
-                    it.putExtra(USER_ID, uid)
+                    it.putExtra(USER_ID, uid.toString())
                     startActivity(it)
                 } else {
                     Toast.makeText(
