@@ -290,7 +290,8 @@ class MainActivity : AppCompatActivity() {
 
         // ADDED
         val id = database.child(uid).push().key
-        database.child(uid).setValue(id)
+        Log.i("Generated ID", id)
+        database.child(uid).child(id!!).push()
         newItem = ExampleItem(time, R.drawable.emptyavatar,s_emoji, username, post)
 
         database.child(uid).child(id!!).setValue(newItem)
