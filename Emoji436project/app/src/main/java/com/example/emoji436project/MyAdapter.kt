@@ -12,6 +12,7 @@ import org.w3c.dom.Text
 
 class MyAdapter(private val exampleList: List<ExampleItem>) :
     RecyclerView.Adapter<MyAdapter.ExampleViewHolder>() {
+    val list_limit = 10
 
     class ExampleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -38,7 +39,13 @@ class MyAdapter(private val exampleList: List<ExampleItem>) :
 
 
 
-    override fun getItemCount() = exampleList.size
+    override fun getItemCount(): Int {
+        return if(exampleList.size > list_limit){
+            list_limit;
+        } else {
+            exampleList.size
+        }
+    }
 
 
 

@@ -27,8 +27,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
-        Log.i(TAG, "life is good");
         val imageView2: ImageView = findViewById<View>(R.id.imageView2) as ImageView
         val imageView3: ImageView = findViewById<View>(R.id.imageView3) as ImageView
         val imageView5: ImageView = findViewById<View>(R.id.imageView5) as ImageView
@@ -39,9 +37,6 @@ class MainActivity : AppCompatActivity() {
 
         button1.setOnClickListener(object: View.OnClickListener{
             override fun onClick(view: View?) {
-                Log.i(TAG, "clicked button");
-                Log.i(TAG, "opened public feed")
-
                 var mEdit: EditText = findViewById<EditText>(R.id.editTextTextMultiLine2) as EditText
                 val post: String = mEdit.getText().toString()
                 openPublicFeed(s_emoji, post)
@@ -84,15 +79,12 @@ class MainActivity : AppCompatActivity() {
         imageView3.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View) {
                 selected_emoji_v3++;
-                Log.v(TAG, "num:" + selected_emoji_v3);
                 if (selected_emoji_v3%2 == 0){
                     makeSmaller(imageView3)
-                    Log.v(TAG, "even:" + selected_emoji_v3);
                 }
                 else {
                     makeBigger(imageView3)
                     s_emoji = R.drawable.second_mood
-                    Log.v(TAG, "odd:" + selected_emoji_v3);
 
                     if (selected_emoji_v2%2 == 1){
                         selected_emoji_v2++
@@ -118,15 +110,15 @@ class MainActivity : AppCompatActivity() {
         imageView5.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View) {
                 selected_emoji_v5++;
-                Log.v(TAG, "num:" + selected_emoji_v5);
+
                 if (selected_emoji_v5%2 == 0){
                     makeSmaller(imageView5)
-                    Log.v(TAG, "even:" + selected_emoji_v5);
+
                 }
                 else {
                     makeBigger(imageView5)
                     s_emoji = R.drawable.fourth_mood
-                    Log.v(TAG, "odd:" + selected_emoji_v5);
+
                 }
 
                 if (selected_emoji_v3%2 == 1){
@@ -151,15 +143,12 @@ class MainActivity : AppCompatActivity() {
         imageView6.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View) {
                 selected_emoji_v6++;
-                Log.v(TAG, "num:" + selected_emoji_v6);
                 if (selected_emoji_v6%2 == 0){
                     makeSmaller(imageView6)
-                    Log.v(TAG, "even:" + selected_emoji_v6);
                 }
                 else {
                     makeBigger(imageView6)
                     s_emoji = R.drawable.fifth_mood
-                    Log.v(TAG, "odd:" + selected_emoji_v6);
 
                     if (selected_emoji_v3%2 == 1){
                         selected_emoji_v3++
@@ -185,15 +174,14 @@ class MainActivity : AppCompatActivity() {
         imageView7.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View) {
                 selected_emoji_v7++;
-                Log.v(TAG, "num:" + selected_emoji_v7);
+
                 if (selected_emoji_v7%2 == 0){
                     makeSmaller(imageView7)
-                    Log.v(TAG, "even:" + selected_emoji_v7);
+
                 }
                 else {
                     makeBigger(imageView7)
                     s_emoji = R.drawable.third_mood
-                    Log.v(TAG, "odd:" + selected_emoji_v7);
 
                     if (selected_emoji_v3%2 == 1){
                         selected_emoji_v3++
