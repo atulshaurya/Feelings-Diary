@@ -23,17 +23,11 @@ import com.google.firebase.database.FirebaseDatabase
 
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var yourBitmap: Bitmap
     private var  selected_emoji_v2 = 0;
     private var  selected_emoji_v3 = 0;
     private var  selected_emoji_v5 = 0;
     private var  selected_emoji_v6 = 0;
     private var  selected_emoji_v7 = 0;
-
-
-    val exampleList: ArrayList<ExampleItem> = arrayListOf<ExampleItem>()
-    val adapter = MyAdapter(exampleList)
-    var newItem = ExampleItem(System.currentTimeMillis().toString(), R.drawable.emptyavatar,0,"User","NEW ITEM")
     var s_emoji:Int = 0
 
 
@@ -42,10 +36,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var uid: String
     private lateinit var time: String
     private lateinit var username: String
-
-
-
-
     /* ADDED */
 
 
@@ -53,17 +43,17 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.dashboard_main)
+        Log.i(TAG, "atleast this should show")
 
         // ADDED
         database = FirebaseDatabase.getInstance().getReference("data")
-        uid = intent.getStringExtra(USER_ID)!!
-        username = intent.getStringExtra(USER_EMAIL)
+//        uid = intent.getStringExtra(USER_ID)!!
+//        username = intent.getStringExtra(USER_EMAIL)
 
         time = System.currentTimeMillis().toString()
 
+        Log.i(TAG, "after database")
 
-
-        Log.i(TAG, "life is good");
         val imageView2: ImageView = findViewById<View>(R.id.imageView2) as ImageView
         val imageView3: ImageView = findViewById<View>(R.id.imageView3) as ImageView
         val imageView5: ImageView = findViewById<View>(R.id.imageView5) as ImageView
@@ -74,27 +64,22 @@ class MainActivity : AppCompatActivity() {
 
         button1.setOnClickListener(object: View.OnClickListener{
             override fun onClick(view: View?) {
-                Log.i(TAG, "clicked button");
-                Log.i(TAG, "opened public feed")
 
                 var mEdit: EditText = findViewById<EditText>(R.id.editTextTextMultiLine2) as EditText
                 val post: String = mEdit.getText().toString()
+                Log.i(TAG, "about to open public feed")
                 openPublicFeed(s_emoji, post)
-                Log.i(TAG, post)
             }
         })
         imageView2.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View) {
                 selected_emoji_v2++;
-                Log.v(TAG, "num:" + selected_emoji_v2);
                 if (selected_emoji_v2%2 == 0){
                     makeSmaller(imageView2)
-                    Log.v(TAG, "even:" + selected_emoji_v2);
                 }
                 else {
                     makeBigger(imageView2)
                     s_emoji = R.drawable.first_mood
-                    Log.v(TAG, "even:" + selected_emoji_v2);
                     if (selected_emoji_v3%2 == 1){
                         selected_emoji_v3++
                         makeSmaller(imageView3)
@@ -120,15 +105,12 @@ class MainActivity : AppCompatActivity() {
         imageView3.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View) {
                 selected_emoji_v3++;
-                Log.v(TAG, "num:" + selected_emoji_v3);
                 if (selected_emoji_v3%2 == 0){
                     makeSmaller(imageView3)
-                    Log.v(TAG, "even:" + selected_emoji_v3);
                 }
                 else {
                     makeBigger(imageView3)
                     s_emoji = R.drawable.second_mood
-                    Log.v(TAG, "odd:" + selected_emoji_v3);
 
                     if (selected_emoji_v2%2 == 1){
                         selected_emoji_v2++
@@ -154,15 +136,12 @@ class MainActivity : AppCompatActivity() {
         imageView5.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View) {
                 selected_emoji_v5++;
-                Log.v(TAG, "num:" + selected_emoji_v5);
                 if (selected_emoji_v5%2 == 0){
                     makeSmaller(imageView5)
-                    Log.v(TAG, "even:" + selected_emoji_v5);
                 }
                 else {
                     makeBigger(imageView5)
                     s_emoji = R.drawable.fourth_mood
-                    Log.v(TAG, "odd:" + selected_emoji_v5);
                 }
 
                 if (selected_emoji_v3%2 == 1){
@@ -187,15 +166,12 @@ class MainActivity : AppCompatActivity() {
         imageView6.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View) {
                 selected_emoji_v6++;
-                Log.v(TAG, "num:" + selected_emoji_v6);
                 if (selected_emoji_v6%2 == 0){
                     makeSmaller(imageView6)
-                    Log.v(TAG, "even:" + selected_emoji_v6);
                 }
                 else {
                     makeBigger(imageView6)
                     s_emoji = R.drawable.fifth_mood
-                    Log.v(TAG, "odd:" + selected_emoji_v6);
 
                     if (selected_emoji_v3%2 == 1){
                         selected_emoji_v3++
@@ -221,15 +197,12 @@ class MainActivity : AppCompatActivity() {
         imageView7.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View) {
                 selected_emoji_v7++;
-                Log.v(TAG, "num:" + selected_emoji_v7);
                 if (selected_emoji_v7%2 == 0){
                     makeSmaller(imageView7)
-                    Log.v(TAG, "even:" + selected_emoji_v7);
                 }
                 else {
                     makeBigger(imageView7)
                     s_emoji = R.drawable.third_mood
-                    Log.v(TAG, "odd:" + selected_emoji_v7);
 
                     if (selected_emoji_v3%2 == 1){
                         selected_emoji_v3++
@@ -268,34 +241,29 @@ class MainActivity : AppCompatActivity() {
         imageView.setLayoutParams(layout)
     }
 
-    public fun openPublicFeed(
+    fun openPublicFeed(
         emoji: Int,
         post: String
     ) {
-        val images = ArrayList<Int>()
-//        if (newItem.imageResource != null){
-//            images.add(0,newItem.imageResource!!)
-//        }
-//        if (newItem.imageResource2 != null){
-//            images.add(1,newItem.imageResource2!!)
-//        }
-
-
+        Log.i(TAG, "opened public feed")
         val intent = Intent(this, PublicFeed::class.java)
         intent.putExtra("emoji", emoji)
-        intent.putExtra("user", intent.getStringExtra(USER_EMAIL))
+//        intent.getStringExtra(USER_EMAIL)
+        intent.putExtra("user", "USER" )
         intent.putExtra("content", post)
-        intent.putExtra(USER_ID, uid)
-        intent.putExtra(USER_EMAIL, username)
+//        intent.putExtra(USER_ID, uid)
+//        intent.putExtra(USER_EMAIL, username)
+        Log.i(TAG, "put extras")
         startActivity(intent)
+        Log.i(TAG, "started intent")
 
         // ADDED
-        val id = database.child(uid).push().key
-        Log.i("Generated ID", id)
-        database.child(uid).child(id!!).push()
-        newItem = ExampleItem(time, R.drawable.emptyavatar,s_emoji, username, post)
-
-        database.child(uid).child(id!!).setValue(newItem)
+//        val id = database.child(uid).push().key
+//        Log.i("Generated ID", id)
+//        database.child(uid).child(id!!).push()
+//        val newItem = ExampleItem(time, R.drawable.emptyavatar,s_emoji, "USER", post)
+//
+//        database.child(uid).child(id!!).setValue(newItem)
     }
 
     companion object {
