@@ -261,7 +261,11 @@ class MainActivity : AppCompatActivity() {
         val id = database.child(uid).push().key
         Log.i("Generated ID", id)
         database.child(uid).child(id!!).push()
-        val newItem = ExampleItem(time, R.drawable.emptyavatar,s_emoji, "USER", post)
+
+        // TODO ***************************************************************************************************************** //
+        // TODO: PAULINA: Simply replace the empty quotes in the last attribute below with your comment that I am guessing you will get from an intent.
+        // TODO ***************************************************************************************************************** //
+        val newItem = ExampleItem(time, R.drawable.emptyavatar,s_emoji, "USER", post, "")
 
         database.child(uid).child(id!!).setValue(newItem)
     }
