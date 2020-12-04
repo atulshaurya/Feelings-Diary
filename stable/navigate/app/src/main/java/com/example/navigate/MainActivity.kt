@@ -1,10 +1,11 @@
-package com.example.diary
+package com.example.navigate
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import com.example.navigate.LoginActivity
 
 class MainActivity : AppCompatActivity() {
     private var registerBtn: Button? = null

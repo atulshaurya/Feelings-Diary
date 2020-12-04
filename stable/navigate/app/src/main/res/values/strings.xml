@@ -3,4 +3,17 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="register_new_account">Register new account</string>
+    <string name="register">Register</string>
+    <string name="account_login">Account Login</string>
+    <string name="login">Login</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="title_activity_user_app">MainActivity</string>
+    <string name="logout">Sign out</string>
+    <string name="good">Feeling good</string>
+    <string name="cal_name">Calendar</string>
+    <string name="welcome">Hello! How are you feeling User?</string>
+    <string name="publicFeed">Public Feed</string>
+    <string name="privateFeed">Private Feed</string>
 </resources>

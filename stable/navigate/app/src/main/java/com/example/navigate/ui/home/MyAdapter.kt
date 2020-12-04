@@ -1,4 +1,4 @@
-package com.example.diary.ui.home
+package com.example.navigate.ui.home
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,8 +6,9 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.diary.ExampleItem
-import com.example.diary.R
+import com.example.navigate.ExampleItem
+import com.example.navigate.R
+
 
 class MyAdapter(private val exampleList: List<ExampleItem>) :
     RecyclerView.Adapter<MyAdapter.ExampleViewHolder>() {

@@ -1,15 +1,18 @@
-package com.example.diary
+package com.example.navigate
 
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.diary.ui.dashboard.MainActivity
+import com.example.navigate.R
+import com.example.navigate.ui.dashboard.DashboardFragment
+import com.example.navigate.ui.home.HomeFragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -67,9 +70,12 @@ class LoginActivity : AppCompatActivity()  {
                     Toast.makeText(applicationContext, "Login successful!", Toast.LENGTH_LONG)
                         .show()
                     val uid = mAuth!!.uid
-                    val it =  Intent(this@LoginActivity, com.example.diary.ui.dashboard.MainActivity::class.java)
-                    it.putExtra(USER_EMAIL, userEmail.toString())
+                    val it =  Intent(this@LoginActivity, navapp::class.java)
+                    it.putExtra(USER_EMAIL, userEmail!!.text.toString())
                     it.putExtra(USER_ID, uid.toString())
+                    Log.i("IDIDIDIDIDIDID", uid.toString())
+
+
                     startActivity(it)
                 } else {
                     Toast.makeText(
@@ -83,7 +89,7 @@ class LoginActivity : AppCompatActivity()  {
     }
 
     companion object {
-        const val USER_EMAIL = "com.example.diary.useremail"
-        const val USER_ID = "com.example.diary.userid"
+        const val USER_EMAIL = "com.example.navigate.useremail"
+        const val USER_ID = "com.example.navigate.userid"
     }
 }

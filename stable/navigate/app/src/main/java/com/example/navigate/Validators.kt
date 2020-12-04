@@ -1,4 +1,4 @@
-package com.example.diary
+package com.example.navigate
 
 class Validators {
     fun validEmail(email: String?) : Boolean {

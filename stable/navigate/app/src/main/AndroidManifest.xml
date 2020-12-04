@@ -18,6 +18,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name="com.example.navigate.LoginActivity" />
+        <activity android:name="com.example.navigate.RegistrationActivity" />
+        <activity android:name="com.example.navigate.ui.home.HomeFragment" />
+        <activity android:name="com.example.navigate.ui.dashboard.DashboardFragment" />
+        <activity android:name=".navapp"/>
+
     </application>
 
 </manifest>
