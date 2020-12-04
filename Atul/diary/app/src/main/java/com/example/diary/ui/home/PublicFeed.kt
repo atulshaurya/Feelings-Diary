@@ -20,8 +20,7 @@ import com.google.gson.reflect.TypeToken
 
 
 class PublicFeed : AppCompatActivity() {
-    var exampleList: ArrayList<ExampleItem> = arrayListOf<ExampleItem>(ExampleItem(0.toString(), R.drawable.emptyavatar, R.drawable.first_mood,"Feelings Diary", "Welcome to Feelings Diary! Write how you feel in a post!"))
-
+    var exampleList: ArrayList<ExampleItem> = arrayListOf<ExampleItem>()
 
     // ADDED //
     private lateinit var database: DatabaseReference
@@ -94,7 +93,12 @@ class PublicFeed : AppCompatActivity() {
         Log.i(TAG, "json list in load data " + json)
         val type = object : TypeToken<ArrayList<ExampleItem?>?>() {}.type
         Log.i(TAG, "after type " + json)
-        exampleList = gson.fromJson(json, type) as ArrayList<ExampleItem>
+        if (json == null) {
+            val newItem = ExampleItem(0.toString(), R.drawable.emptyavatar, R.drawable.first_mood,"Feelings Diary", "Welcome to Feelings Diary! Write how you feel in a post!")
+            exampleList.add(newItem)
+        } else{
+            exampleList = gson.fromJson(json, type) as ArrayList<ExampleItem>
+        }
         Log.i(TAG, "after assignment " + json)
     }
     private fun buildRecyclerView(){
