@@ -20,10 +20,14 @@ import com.google.gson.reflect.TypeToken
 
 
 class PublicFeed : AppCompatActivity() {
-    var exampleList: ArrayList<ExampleItem> = arrayListOf<ExampleItem>()
+    var exampleList: ArrayList<ExampleItem> = arrayListOf<ExampleItem>(ExampleItem(0.toString(), R.drawable.emptyavatar, R.drawable.first_mood,"Feelings Diary", "Welcome to Feelings Diary! Write how you feel in a post!"))
+
+
     // ADDED //
     private lateinit var database: DatabaseReference
-//    private lateinit var uid: String
+    private lateinit var uid: String
+    private lateinit var username: String
+    private lateinit var post: String
     private val TAG = "Public"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,7 +36,10 @@ class PublicFeed : AppCompatActivity() {
 
         // DATABASE SETUP
         database = FirebaseDatabase.getInstance().getReference("data")
-//        uid = intent.getStringExtra(MainActivity.USER_ID)
+        uid = intent.getStringExtra(USER_ID)
+        username = intent.getStringExtra(USER_EMAIL)
+        post = intent.getStringExtra("content")
+
 
         loadData()
         buildRecyclerView()
@@ -56,6 +63,9 @@ class PublicFeed : AppCompatActivity() {
     private fun startMainActivity() {
         val mainintent = Intent(this, com.example.diary.ui.dashboard.MainActivity::class.java)
         startActivity(mainintent)
+
+        mainintent.putExtra(USER_ID, uid)
+        mainintent.putExtra(USER_EMAIL, username)
     }
 
     private fun addToList(){
@@ -96,5 +106,7 @@ class PublicFeed : AppCompatActivity() {
     }
     companion object {
         val e_List = "eList"
+        const val USER_ID = "com.example.diary.userid"
+        const val USER_EMAIL = "com.example.diary.useremail"
     }
 }
