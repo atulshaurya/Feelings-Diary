@@ -47,8 +47,8 @@ class MainActivity : AppCompatActivity() {
 
         // ADDED
         database = FirebaseDatabase.getInstance().getReference("data")
-//        uid = intent.getStringExtra(USER_ID)!!
-//        username = intent.getStringExtra(USER_EMAIL)
+        uid = intent.getStringExtra(USER_ID)!!
+        username = intent.getStringExtra(USER_EMAIL)
 
         time = System.currentTimeMillis().toString()
 
@@ -242,28 +242,28 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun openPublicFeed(
-        emoji: Int,
-        post: String
+            emoji: Int,
+            post: String
     ) {
         Log.i(TAG, "opened public feed")
         val intent = Intent(this, PublicFeed::class.java)
         intent.putExtra("emoji", emoji)
-//        intent.getStringExtra(USER_EMAIL)
+        intent.getStringExtra(USER_EMAIL)
         intent.putExtra("user", "USER" )
         intent.putExtra("content", post)
-//        intent.putExtra(USER_ID, uid)
-//        intent.putExtra(USER_EMAIL, username)
+        intent.putExtra(USER_ID, uid)
+        intent.putExtra(USER_EMAIL, username)
         Log.i(TAG, "put extras")
         startActivity(intent)
         Log.i(TAG, "started intent")
 
         // ADDED
-//        val id = database.child(uid).push().key
-//        Log.i("Generated ID", id)
-//        database.child(uid).child(id!!).push()
-//        val newItem = ExampleItem(time, R.drawable.emptyavatar,s_emoji, "USER", post)
-//
-//        database.child(uid).child(id!!).setValue(newItem)
+        val id = database.child(uid).push().key
+        Log.i("Generated ID", id)
+        database.child(uid).child(id!!).push()
+        val newItem = ExampleItem(time, R.drawable.emptyavatar,s_emoji, "USER", post)
+
+        database.child(uid).child(id!!).setValue(newItem)
     }
 
     companion object {
