@@ -6,10 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.Toast
+import android.widget.*
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -62,6 +59,11 @@ class DashboardFragment : Fragment() {
         uid = activity?.intent?.getStringExtra(USER_ID)!!
         username = activity?.intent?.getStringExtra(USER_EMAIL)!!
 
+        var txt = view.findViewById<TextView>(R.id.textView2)
+        var str = "Hi" + username
+
+        txt.text = str
+
         time = System.currentTimeMillis().toString()
 
         Log.i(TAG, "after database")
@@ -85,12 +87,12 @@ class DashboardFragment : Fragment() {
             }
         })
 
-        compute(view)
+        compute()
         return view
 
     }
 
-    private fun compute(view: View){
+    private fun compute(){
         imageView2!!.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View) {
                 selected_emoji_v2++;
@@ -473,10 +475,11 @@ class DashboardFragment : Fragment() {
             putString("content", post)
         }
         val pubfeed = HomeFragment()
-        pubfeed.arguments = bundle
+        //pubfeed.arguments = bundle
+
 
         val intent = Intent(context, HomeFragment::class.java)
-        intent.putExtra("emoji", emoji)
+        intent.putExtra("emoji", s_emoji)
         intent.putExtra("user", "USER")
         intent.putExtra("content", post)
         intent.putExtra(USER_ID, uid)
@@ -490,8 +493,9 @@ class DashboardFragment : Fragment() {
         if (id != null) {
             Log.i("Generated ID", id)
         }
-        database.child(uid).child(id!!).push()
-        val newItem = ExampleItem(time, R.drawable.emptyavatar, s_emoji, username, post)
+
+        database.child(uid).child(id!!).push().key
+        val newItem = ExampleItem(R.drawable.emptyavatar.toLong(), s_emoji.toLong(), username, post)
 
         database.child(uid).child(id!!).setValue(newItem)
         Log.i(TAG, "opened public feed")
@@ -503,7 +507,6 @@ class DashboardFragment : Fragment() {
         fragmentTransaction.commit()*/
 
         Toast.makeText(context, "Saved to diary!", Toast.LENGTH_LONG).show()
-
 
         return pubfeed
 

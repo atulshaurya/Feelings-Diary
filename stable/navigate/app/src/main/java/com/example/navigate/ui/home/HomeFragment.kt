@@ -1,6 +1,5 @@
 package com.example.navigate.ui.home
 
-import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.content.Intent
 import android.os.Bundle
@@ -8,22 +7,13 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import androidx.fragment.app.FragmentActivity
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.navigate.ui.home.MyAdapter
 import com.example.navigate.R
 import androidx.fragment.app.Fragment
 import com.example.navigate.ui.dashboard.DashboardFragment
 import com.example.navigate.ExampleItem
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
@@ -48,6 +38,9 @@ class HomeFragment : Fragment() {
         val view: View =  inflater.inflate(R.layout.fragment_home, container, false)
         var recycler_view: RecyclerView = view.findViewById<View>(R.id.recyclerView) as RecyclerView
 
+        // Getting reference to the database
+        database = FirebaseDatabase.getInstance().getReference("data")
+
         /*uid = activity?.intent?.getStringExtra(USER_ID).toString()
         username = activity?.intent?.getStringExtra(USER_EMAIL).toString()
         post = activity?.intent?.getStringExtra("content").toString()*/
@@ -62,15 +55,37 @@ class HomeFragment : Fragment() {
             post = ""
         }
 
+        val queryRef = database
+
+        queryRef.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                // Get Post object and use the values to update the UI
+                val childs = dataSnapshot.children
+
+                childs.forEach {
+                    addToView(it, it.key)
+                    buildRecyclerView(recycler_view)
+                }
+
+                Log.i("pfdbe", post.toString())
+
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Getting Post failed, log a message
+                Log.w(TAG, "loadPost:onCancelled", databaseError.toException())
+                // ...
+            }
+        })
 
 
-        loadData()
+        //loadData()
         buildRecyclerView(recycler_view)
-        Log.i(TAG, "size before Add " + exampleList.size.toString())
-        addToList()
-        Log.i(TAG, "size after add " + exampleList.size.toString())
-        saveData()
-        Log.i(TAG, "size after save Data " + exampleList.size.toString())
+        //Log.i(TAG, "size before Add " + exampleList.size.toString())
+        //addToList()
+        //Log.i(TAG, "size after add " + exampleList.size.toString())
+        //saveData()
+        //Log.i(TAG, "size after save Data " + exampleList.size.toString())
 
         /*val button4: Button = view?.findViewById<View>(R.id.button4) as Button
         button4.setOnClickListener(object: View.OnClickListener {
@@ -85,7 +100,28 @@ class HomeFragment : Fragment() {
 
 
     }
-        /* Navigation */
+
+    private fun addToView(ds: DataSnapshot, key: String?) {
+        ds.children.forEach {
+            var uid = key
+            var username = it.child("username").value as String
+            Log.i("CHEEEECKKK", username.toString())
+            var avatar: Long = it.child("avatar").value as Long
+            var emoji= it.child("emoji").value as Long
+            var feelings = it.child("feelings").value as String
+
+            // The example item
+            var egi = ExampleItem((avatar), emoji, username, feelings)
+
+            exampleList.add(egi)
+        }
+    }
+
+    fun Long.toIntOrNull(): Int? {
+        val i = this.toInt()
+        return if (i.toLong() == this) i else null
+    }
+    /* Navigation */
         /*val navView: BottomNavigationView = findViewById(R.id.nav_view)
 
         val navController = findNavController(R.id.nav_host_fragment)
@@ -138,8 +174,8 @@ class HomeFragment : Fragment() {
         val content: String? = activity?.intent?.getStringExtra("content")
         val emoji = activity?.intent?.getIntExtra("emoji", 0)
         val time = System.currentTimeMillis().toString()
-        val  username = activity?.intent?.getStringExtra(USER_EMAIL)
-        val newItem = ExampleItem(time, R.drawable.emptyavatar, emoji,"USER", content)
+        val username = activity?.intent?.getStringExtra(USER_EMAIL)
+        val newItem = ExampleItem(R.drawable.emptyavatar.toLong(), emoji!!.toLong(), username, content)
         exampleList.add(0, newItem)
         Log.i(TAG, "size after addToList" + exampleList.size.toString())
     }
@@ -165,7 +201,7 @@ class HomeFragment : Fragment() {
         val type = object : TypeToken<ArrayList<ExampleItem?>?>() {}.type
         Log.i(TAG, "after type " + json)
         if (json == null) {
-            val newItem = ExampleItem(0.toString(), R.drawable.emptyavatar, R.drawable.first_mood,"Feelings navigate", "Welcome to Feelings navigate! Write how you feel in a post!")
+            val newItem = ExampleItem(R.drawable.emptyavatar.toLong(), R.drawable.first_mood.toLong(),"Feelings navigate", "Welcome to Feelings navigate! Write how you feel in a post!")
             exampleList.add(newItem)
         } else{
             exampleList = gson.fromJson(json, type) as ArrayList<ExampleItem>
@@ -178,6 +214,8 @@ class HomeFragment : Fragment() {
         recycler_view.layoutManager = LinearLayoutManager(activity)
         recycler_view.setHasFixedSize(true)
     }
+
+
     companion object {
         val e_List = "eList"
         const val USER_ID = "com.example.navigate.userid"
