@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "690055140601",
+    "firebase_url": "https://feelings-diary-78b16.firebaseio.com",
+    "project_id": "feelings-diary-78b16",
+    "storage_bucket": "feelings-diary-78b16.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:690055140601:android:e81617bda406de43533e28",
+        "android_client_info": {
+          "package_name": "com.example.diary"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "690055140601-3tlgtbqhf986k811oe2te3ku479pg9p3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFyDLtcSLkrjGJAkTgeljNSmkIx7SWk-g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "690055140601-3tlgtbqhf986k811oe2te3ku479pg9p3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
