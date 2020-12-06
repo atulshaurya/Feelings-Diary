@@ -265,7 +265,7 @@ class MainActivity : AppCompatActivity() {
         // TODO ***************************************************************************************************************** //
         // TODO: PAULINA: Simply replace the empty quotes in the last attribute below with your comment that I am guessing you will get from an intent.
         // TODO ***************************************************************************************************************** //
-        val newItem = ExampleItem(time, R.drawable.emptyavatar,s_emoji, "USER", post, "")
+        val newItem = ExampleItem(time, R.drawable.emptyavatar,s_emoji, "USER", post, "comment")
 
         database.child(uid).child(id!!).setValue(newItem)
     }

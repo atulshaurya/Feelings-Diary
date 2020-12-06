@@ -108,6 +108,9 @@ class PublicFeed : AppCompatActivity() {
         recycler_view.layoutManager = LinearLayoutManager(this)
         recycler_view.setHasFixedSize(true)
     }
+
+
+
     companion object {
         val e_List = "eList"
         const val USER_ID = "com.example.diary.userid"

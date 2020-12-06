@@ -1,4 +1,3 @@
 package com.example.navigate.ui.home
 
-class Comment {
-}
+data class Comment(var comment_content: String?, var uid: String?, var uname: String?)
