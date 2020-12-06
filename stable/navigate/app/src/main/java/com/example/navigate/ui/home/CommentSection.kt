@@ -27,10 +27,12 @@ class CommentSection : AppCompatActivity() {
     private lateinit var username: String
     private lateinit var post: String
     private lateinit var time: String
+    private lateinit var s_emoji : String
+
 
     val recycler_view: RecyclerView? = null
 
-    var s_emoji:Int = 0
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,7 +42,8 @@ class CommentSection : AppCompatActivity() {
         Log.i("this is the UID", uid)
         username = intent.getStringExtra(USER_EMAIL).toString()
         post = intent.getStringExtra("content").toString()
-        time = System.currentTimeMillis().toString()
+        s_emoji = intent.getStringExtra("emoji").toString()
+
 
         database = FirebaseDatabase.getInstance().getReference("data")
 
@@ -59,7 +62,7 @@ class CommentSection : AppCompatActivity() {
             }
 
             database.child(uid).child(id!!).push().key
-            val newItem = ExampleItem(time, R.drawable.emptyavatar, s_emoji, username, post, comment)
+            val newItem = ExampleItem(R.drawable.emptyavatar.toLong(), s_emoji.toLong(), username, post, comment)
 
             database.child(uid).child(id!!).setValue(newItem)
 

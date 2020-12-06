@@ -495,7 +495,7 @@ class DashboardFragment : Fragment() {
         }
 
         database.child(uid).child(id!!).push().key
-        val newItem = ExampleItem(R.drawable.emptyavatar.toLong(), s_emoji.toLong(), username, post)
+        val newItem = ExampleItem(R.drawable.emptyavatar.toLong(), s_emoji.toLong(), username, post, "")
 
         database.child(uid).child(id!!).setValue(newItem)
         Log.i(TAG, "opened public feed")

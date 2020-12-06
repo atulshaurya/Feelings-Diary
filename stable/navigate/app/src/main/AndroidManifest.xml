@@ -23,6 +23,7 @@
         <activity android:name="com.example.navigate.RegistrationActivity" />
         <activity android:name="com.example.navigate.ui.home.HomeFragment" />
         <activity android:name="com.example.navigate.ui.dashboard.DashboardFragment" />
+        <activity android:name=".ui.home.CommentSection"/>
         <activity android:name=".navapp"/>
 
     </application>

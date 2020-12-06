@@ -10,15 +10,38 @@ import com.example.navigate.ExampleItem
 import com.example.navigate.R
 
 
-class MyAdapter(private val exampleList: List<ExampleItem>) :
+class MyAdapter(private val exampleList: List<ExampleItem>,
+                private var listener: ItemClickListener) :
     RecyclerView.Adapter<MyAdapter.ExampleViewHolder>() {
     val list_limit = 10
 
-    class ExampleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val imageView1: ImageView = itemView.findViewById(R.id.imageView4)
-        val imageView2: ImageView = itemView.findViewById(R.id.imageView9)
-        val textView1: TextView = itemView.findViewById(R.id.text_view_1)
-        val textView2: TextView = itemView.findViewById(R.id.text_view_2)
+    inner class ExampleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
+        val imageView1 : ImageView
+        val imageView2 : ImageView
+        val textView1 : TextView
+        val textView2 : TextView
+
+        init {
+            imageView1 = itemView.findViewById(R.id.imageView4)
+
+            imageView2 = itemView.findViewById(R.id.imageView9)
+
+            textView1= itemView.findViewById(R.id.text_view_1)
+
+            textView2 = itemView.findViewById(R.id.text_view_2)
+
+            itemView.setOnClickListener(this)
+        }
+
+        override fun onClick(p0: View?) {
+            if (adapterPosition != RecyclerView.NO_POSITION) {
+                listener.onClick(adapterPosition)
+            }
+        }
+    }
+
+    interface ItemClickListener {
+        fun onClick(position: Int)
     }
 
 

@@ -18,7 +18,7 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), MyAdapter.ItemClickListener {
     var exampleList: ArrayList<ExampleItem> = arrayListOf<ExampleItem>()
 
     // ADDED //
@@ -26,6 +26,7 @@ class HomeFragment : Fragment() {
     private lateinit var uid: String
     private lateinit var username: String
     private lateinit var post: String
+    private var emoji: Long = 0
     private val TAG = "Public"
     val recycler_view: RecyclerView? = null
 
@@ -108,10 +109,11 @@ class HomeFragment : Fragment() {
             Log.i("CHEEEECKKK", username.toString())
             var avatar: Long = it.child("avatar").value as Long
             var emoji= it.child("emoji").value as Long
+            this.emoji = emoji
             var feelings = it.child("feelings").value as String
 
             // The example item
-            var egi = ExampleItem((avatar), emoji, username, feelings)
+            var egi = ExampleItem((avatar), emoji, username, feelings, "")
 
             exampleList.add(egi)
         }
@@ -175,7 +177,7 @@ class HomeFragment : Fragment() {
         val emoji = activity?.intent?.getIntExtra("emoji", 0)
         val time = System.currentTimeMillis().toString()
         val username = activity?.intent?.getStringExtra(USER_EMAIL)
-        val newItem = ExampleItem(R.drawable.emptyavatar.toLong(), emoji!!.toLong(), username, content)
+        val newItem = ExampleItem(R.drawable.emptyavatar.toLong(), emoji!!.toLong(), username, content, "")
         exampleList.add(0, newItem)
         Log.i(TAG, "size after addToList" + exampleList.size.toString())
     }
@@ -201,18 +203,29 @@ class HomeFragment : Fragment() {
         val type = object : TypeToken<ArrayList<ExampleItem?>?>() {}.type
         Log.i(TAG, "after type " + json)
         if (json == null) {
-            val newItem = ExampleItem(R.drawable.emptyavatar.toLong(), R.drawable.first_mood.toLong(),"Feelings navigate", "Welcome to Feelings navigate! Write how you feel in a post!")
+            val newItem = ExampleItem(R.drawable.emptyavatar.toLong(), R.drawable.first_mood.toLong(),"Feelings navigate", "Welcome to Feelings navigate! Write how you feel in a post!", "")
             exampleList.add(newItem)
         } else{
             exampleList = gson.fromJson(json, type) as ArrayList<ExampleItem>
         }
         Log.i(TAG, "after assignment " + json)
     }
+
     private fun buildRecyclerView(recycler_view: RecyclerView){
-        var adapter = MyAdapter(exampleList)
+        var adapter = MyAdapter(exampleList, this)
         recycler_view!!.adapter = adapter
         recycler_view.layoutManager = LinearLayoutManager(activity)
         recycler_view.setHasFixedSize(true)
+    }
+
+    override fun onClick(position: Int) {
+        val intent = Intent(activity, CommentSection::class.java)
+        intent.putExtra("emoji", emoji.toString())
+        intent.putExtra("content", post)
+        intent.putExtra(USER_ID, uid)
+        intent.putExtra(USER_EMAIL, username)
+        intent.putExtra("avatar", R.drawable.emptyavatar)
+        startActivity(intent)
     }
 
 

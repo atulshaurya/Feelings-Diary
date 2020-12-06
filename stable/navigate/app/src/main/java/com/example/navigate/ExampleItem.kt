@@ -1,3 +1,3 @@
 package com.example.navigate
 
-data class ExampleItem(var avatar: Long?, var emoji: Long?, var username: String?, var feelings: String?)
+data class ExampleItem(var avatar: Long?, var emoji: Long?, var username: String?, var feelings: String?, var comment: String?)
