@@ -1,5 +1,6 @@
 package com.example.diary.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.*
@@ -11,24 +12,27 @@ import com.google.firebase.database.FirebaseDatabase
 
 class CommentSection : AppCompatActivity() {
     private var mAuth: FirebaseAuth? = null
-    private var mDatabaseReference: DatabaseReference? = null
     private var mDatabase: FirebaseDatabase? = null
     private var listComment: MutableList<Comment>? = null
     private var COMMENT_KEY = "Comment"
     private var PostKey: String? = null
 
+    private lateinit var database: DatabaseReference
+    private lateinit var uid: String
+    private lateinit var username: String
+    private lateinit var post: String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.comment_section)
 
-        val userIcon: ImageView = findViewById(R.id.imageView4)
-        val emoji: ImageView = findViewById(R.id.imageView9)
-        val username: TextView = findViewById(R.id.text_view_1)
-        val feelings: TextView = findViewById(R.id.text_view_2)
+        uid = intent.getStringExtra(USER_ID)
+        username = intent.getStringExtra(USER_EMAIL)
+        post = intent.getStringExtra("content")
+        database = FirebaseDatabase.getInstance().getReference("data")
 
         val comment: EditText = findViewById(R.id.commentText)
         val button: Button = findViewById<Button>(R.id.commentButton)
-
 
 
         mAuth = FirebaseAuth.getInstance()
@@ -57,5 +61,11 @@ class CommentSection : AppCompatActivity() {
 
     private fun showMessage(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+    }
+
+    companion object {
+        val e_List = "eList"
+        const val USER_ID = "com.example.diary.userid"
+        const val USER_EMAIL = "com.example.diary.useremail"
     }
 }

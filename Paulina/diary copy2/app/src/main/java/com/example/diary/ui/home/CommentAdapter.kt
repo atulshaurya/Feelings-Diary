@@ -25,11 +25,9 @@ class CommentAdapter(private val mContext: Context, private val mData: List<Comm
 
     override fun onBindViewHolder(holder: CommentViewHolder, position: Int) {
         val currentItem = mData[position]
-        if(currentItem.imageResource != null) {
-            holder.img_user.setImageResource(currentItem.imageResource!!)
-        }
-        holder.tv_name.text = mData[position].getUname()
-        holder.tv_content.text = mData[position].getContent()
+
+        holder.tv_name.text = currentItem.uname
+        holder.tv_content.text = currentItem.comment_content
     }
 
     override fun getItemCount(): Int {

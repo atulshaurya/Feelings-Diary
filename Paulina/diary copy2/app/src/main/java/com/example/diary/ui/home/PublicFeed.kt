@@ -72,8 +72,8 @@ class PublicFeed : AppCompatActivity(), MyAdapter.ItemClickListener {
         val content: String? = intent.getStringExtra("content")
         val emoji = intent.getIntExtra("emoji", 0)
         val time = System.currentTimeMillis().toString()
-        val  username = intent.getStringExtra(MainActivity.USER_EMAIL)
-        val newItem = ExampleItem(time, R.drawable.emptyavatar, emoji,"USER", content)
+        val username = intent.getStringExtra(MainActivity.USER_EMAIL)
+        val newItem = ExampleItem(time, R.drawable.emptyavatar, emoji, username, content)
         exampleList.add(0, newItem)
         Log.i(TAG, "size after addToList" + exampleList.size.toString())
     }
@@ -109,18 +109,20 @@ class PublicFeed : AppCompatActivity(), MyAdapter.ItemClickListener {
         recycler_view.layoutManager = LinearLayoutManager(this)
         recycler_view.setHasFixedSize(true)
     }
+
+    override fun onClick(position: Int) {
+        val intent = Intent(applicationContext, CommentSection::class.java)
+        intent.putExtra("avatar", exampleList?.get(position)?.avatar)
+        intent.putExtra("emoji", exampleList?.get(position)?.emoji)
+        intent.putExtra("username", exampleList?.get(position)?.username)
+        intent.putExtra("content", exampleList?.get(position)?.feelings)
+        startActivity(intent)
+    }
+
     companion object {
         val e_List = "eList"
         const val USER_ID = "com.example.diary.userid"
         const val USER_EMAIL = "com.example.diary.useremail"
     }
 
-    override fun onClick(position: Int) {
-        val intent = Intent(applicationContext, CommentSection::class.java)
-        intent.putExtra("userImg", exampleList?.get(position)?.avatar)
-        intent.putExtra("emoji", exampleList?.get(position)?.emoji)
-        intent.putExtra("user", exampleList?.get(position)?.username)
-        intent.putExtra("feelings", exampleList?.get(position)?.feelings)
-        startActivity(intent)
-    }
 }
