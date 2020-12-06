@@ -1,13 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9458b75a-bf5a-47c0-a76f-e6b109e8d092" name="Default Changelist" comment="" />
+    <list default="true" id="9458b75a-bf5a-47c0-a76f-e6b109e8d092" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectId" id="1lB2bkiG5MB7bFQi1xGFZz5Ppoq" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Atul/diary" />
+  </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Atul Shaurya\CMSC436\final_project\Feelings-Diary\stable\newDiary\app\src\main\res\drawable" />
@@ -17,6 +32,19 @@
     <configuration />
   </component>
   <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9458b75a-bf5a-47c0-a76f-e6b109e8d092" name="Default Changelist" comment="" />
+      <created>1607056236784</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1607056236784</updated>
+    </task>
     <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="326" y="216" key="FileChooserDialogImpl" timestamp="1607056411197">
+      <screen x="0" y="0" width="1707" height="920" />
+    </state>
+    <state x="326" y="216" key="FileChooserDialogImpl/0.0.1707.920@0.0.1707.920" timestamp="1607056411197" />
   </component>
 </project>

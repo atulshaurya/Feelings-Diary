@@ -20,12 +20,13 @@ class CommentSection : AppCompatActivity() {
     private var COMMENT_KEY = "Comment"
     private var PostKey: String? = null
 
+    var commentList: ArrayList<Comment> = arrayListOf<Comment>()
+
     private lateinit var database: DatabaseReference
     private lateinit var uid: String
     private lateinit var username: String
     private lateinit var post: String
     private lateinit var time: String
-    private lateinit var recycler_view: RecyclerView
 
     var s_emoji:Int = 0
 
@@ -55,7 +56,7 @@ class CommentSection : AppCompatActivity() {
                 Log.i("Generated ID", id)
             }
 
-            database.child(uid).child(id!!).push()
+            database.child(uid).child(id!!).push().key
             val newItem = ExampleItem(time, R.drawable.emptyavatar, s_emoji, username, post, comment)
 
             database.child(uid).child(id!!).setValue(newItem)
@@ -65,7 +66,9 @@ class CommentSection : AppCompatActivity() {
 
     }
 
-    private fun iniView() {
+    private fun iniView(recycler_view: RecyclerView) {
+        var adapter = CommentAdapter(applicationContext, commentList)
+        recycler_view.adapter = adapter
         recycler_view.setLayoutManager(LinearLayoutManager(this))
         val commentRef = mDatabase?.getReference(COMMENT_KEY)?.child(PostKey!!)
 
