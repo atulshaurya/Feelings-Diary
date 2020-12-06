@@ -2,6 +2,7 @@ package com.example.navigate.ui.home
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -17,20 +18,20 @@ import kotlin.collections.ArrayList
 class CommentSection : AppCompatActivity() {
     private var mDatabase: FirebaseDatabase? = null
     private var listComment: MutableList<Comment>? = null
-    private var COMMENT_KEY = "Comment"
     private var PostKey: String? = null
 
     var commentList: ArrayList<Comment> = arrayListOf<Comment>()
 
     private lateinit var database: DatabaseReference
     private lateinit var uid: String
+    private lateinit var subuid: String
     private lateinit var username: String
     private lateinit var post: String
     private lateinit var time: String
     private lateinit var s_emoji : String
+    var recycler_view: RecyclerView? = null
 
 
-    val recycler_view: RecyclerView? = null
 
 
 
@@ -38,11 +39,15 @@ class CommentSection : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.comment_section)
 
+        recycler_view = findViewById<View>(R.id.rv_comment) as RecyclerView
+
+
         uid = intent.getStringExtra(USER_ID).toString()
         Log.i("this is the UID", uid)
         username = intent.getStringExtra(USER_EMAIL).toString()
         post = intent.getStringExtra("content").toString()
         s_emoji = intent.getStringExtra("emoji").toString()
+        subuid = intent.getStringExtra("subid").toString()
 
 
         database = FirebaseDatabase.getInstance().getReference("data")
@@ -56,17 +61,13 @@ class CommentSection : AppCompatActivity() {
         button.setOnClickListener{
             val comment = commentText.text.toString()
 
-            val id = database.child(uid).push().key
-            if (id != null) {
-                Log.i("Generated ID", id)
-            }
 
-            database.child(uid).child(id!!).push().key
-            val newItem = ExampleItem(R.drawable.emptyavatar.toLong(), s_emoji.toLong(), username, post, comment)
 
-            database.child(uid).child(id!!).setValue(newItem)
+            //database.child(uid).child(id!!).push().key
+            //val newItem = ExampleItem(uid, subuid, R.drawable.emptyavatar.toLong(), s_emoji.toLong(), username, post)
+            database.child(uid).child(subuid).child("comments").push().setValue(comment)
 
-            showMessage("comment added!")
+            showMessage("Comment added!")
 
             commentText.setText("")
         }
@@ -77,24 +78,37 @@ class CommentSection : AppCompatActivity() {
 
     private fun iniView() {
         recycler_view?.setLayoutManager(LinearLayoutManager(this))
-        val commentRef = mDatabase?.getReference(COMMENT_KEY)?.child(PostKey!!)
+        val commentRef = mDatabase?.getReference("data")!!.child(uid).child(subuid).child("comments")
 
-        commentRef?.addValueEventListener(object: ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                listComment = ArrayList<Comment>()
-                for (snap in snapshot.children) {
-                    val comment = snap.getValue(Comment::class.java)
-                    (listComment as ArrayList<Comment>).add(comment!!)
+        /*var comment: String = commentRef.child("comment").toString()
+
+        Log.i("COMMENT HERE -> ", comment)*/
+
+        commentRef.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                // Get Post object and use the values to update the UI
+                val allComments = dataSnapshot.children
+
+                allComments.forEach {
+                    //comment ID
+                    var cid = it.key.toString()
+                    Log.i("Comment ID", it.key.toString())
+                    Log.i("COMMENT", it.value.toString())
+                    buildRecyclerView(recycler_view!!)
                 }
-                val commentAdapter = CommentAdapter(applicationContext, listComment as ArrayList<Comment>)
-                recycler_view?.adapter = commentAdapter
             }
 
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
             }
         })
+    }
 
+    private fun buildRecyclerView(recycler_view: RecyclerView){
+        var adapter = CommentAdapter(commentList)
+        recycler_view!!.adapter = adapter
+        recycler_view.layoutManager = LinearLayoutManager(this)
+        recycler_view.setHasFixedSize(true)
     }
 
     private fun showMessage(message: String) {

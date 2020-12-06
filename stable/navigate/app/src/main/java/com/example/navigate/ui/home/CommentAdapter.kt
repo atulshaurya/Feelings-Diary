@@ -9,8 +9,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.navigate.R
 
-class CommentAdapter(private val mContext: Context, private val mData: List<Comment>) :
-    RecyclerView.Adapter<CommentAdapter.CommentViewHolder?>() {
+class CommentAdapter(private val mData: List<Comment>) :
+        RecyclerView.Adapter<CommentAdapter.CommentViewHolder?>() {
 
     class CommentViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var tv_name: TextView = itemView.findViewById(R.id.comment_username)
@@ -18,7 +18,7 @@ class CommentAdapter(private val mContext: Context, private val mData: List<Comm
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommentViewHolder {
-        val row = LayoutInflater.from(mContext).inflate(R.layout.row_comment, parent, false)
+        val row = LayoutInflater.from(parent.context).inflate(R.layout.row_comment, parent, false)
         return CommentViewHolder(row)
     }
 

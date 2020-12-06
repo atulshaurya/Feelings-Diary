@@ -28,6 +28,7 @@ class HomeFragment : Fragment(), MyAdapter.ItemClickListener {
     private lateinit var post: String
     private var emoji: Long = 0
     private val TAG = "Public"
+    private lateinit var subid: String
     val recycler_view: RecyclerView? = null
 
 
@@ -64,6 +65,8 @@ class HomeFragment : Fragment(), MyAdapter.ItemClickListener {
                 val childs = dataSnapshot.children
 
                 childs.forEach {
+                    uid = it.key.toString()
+                    Log.i("USERID MAYBE", it.key.toString())
                     addToView(it, it.key)
                     buildRecyclerView(recycler_view)
                 }
@@ -104,7 +107,8 @@ class HomeFragment : Fragment(), MyAdapter.ItemClickListener {
 
     private fun addToView(ds: DataSnapshot, key: String?) {
         ds.children.forEach {
-            var uid = key
+            subid = it.key.toString()
+            Log.i("SUB ID", subid)
             var username = it.child("username").value as String
             Log.i("CHEEEECKKK", username.toString())
             var avatar: Long = it.child("avatar").value as Long
@@ -113,7 +117,7 @@ class HomeFragment : Fragment(), MyAdapter.ItemClickListener {
             var feelings = it.child("feelings").value as String
 
             // The example item
-            var egi = ExampleItem((avatar), emoji, username, feelings, "")
+            var egi = ExampleItem(uid, subid, (avatar), emoji, username, feelings)
 
             exampleList.add(egi)
         }
@@ -172,15 +176,15 @@ class HomeFragment : Fragment(), MyAdapter.ItemClickListener {
 
     }
 
-    private fun addToList(){
+    /*private fun addToList(){
         val content: String? = activity?.intent?.getStringExtra("content")
         val emoji = activity?.intent?.getIntExtra("emoji", 0)
         val time = System.currentTimeMillis().toString()
         val username = activity?.intent?.getStringExtra(USER_EMAIL)
-        val newItem = ExampleItem(R.drawable.emptyavatar.toLong(), emoji!!.toLong(), username, content, "")
+        val newItem = ExampleItem(R.drawable.emptyavatar.toLong(), emoji!!.toLong(), username, content)
         exampleList.add(0, newItem)
         Log.i(TAG, "size after addToList" + exampleList.size.toString())
-    }
+    }*/
     private fun saveData() {
         val sharedPreferences = activity?.getSharedPreferences("shared preferences", MODE_PRIVATE)
         val editor = sharedPreferences?.edit()
@@ -195,7 +199,7 @@ class HomeFragment : Fragment(), MyAdapter.ItemClickListener {
             editor.apply()
         }
     }
-    private fun loadData() {
+    /*private fun loadData() {
         val sharedPreferences = activity?.getSharedPreferences("shared preferences", MODE_PRIVATE)
         val gson = Gson()
         val json = sharedPreferences?.getString(e_List, null)
@@ -203,14 +207,14 @@ class HomeFragment : Fragment(), MyAdapter.ItemClickListener {
         val type = object : TypeToken<ArrayList<ExampleItem?>?>() {}.type
         Log.i(TAG, "after type " + json)
         if (json == null) {
-            val newItem = ExampleItem(R.drawable.emptyavatar.toLong(), R.drawable.first_mood.toLong(),"Feelings navigate", "Welcome to Feelings navigate! Write how you feel in a post!", "")
+            val newItem = ExampleItem(R.drawable.emptyavatar.toLong(), R.drawable.first_mood.toLong(),"Feelings navigate", "Welcome to Feelings navigate! Write how you feel in a post!")
             exampleList.add(newItem)
         } else{
             exampleList = gson.fromJson(json, type) as ArrayList<ExampleItem>
         }
         Log.i(TAG, "after assignment " + json)
     }
-
+*/
     private fun buildRecyclerView(recycler_view: RecyclerView){
         var adapter = MyAdapter(exampleList, this)
         recycler_view!!.adapter = adapter
@@ -219,11 +223,13 @@ class HomeFragment : Fragment(), MyAdapter.ItemClickListener {
     }
 
     override fun onClick(position: Int) {
+        val eg: ExampleItem = exampleList.get(position)
         val intent = Intent(activity, CommentSection::class.java)
-        intent.putExtra("emoji", emoji.toString())
-        intent.putExtra("content", post)
-        intent.putExtra(USER_ID, uid)
-        intent.putExtra(USER_EMAIL, username)
+        intent.putExtra("emoji", eg.emoji.toString())
+        intent.putExtra("content", eg.feelings)
+        intent.putExtra(USER_ID, eg.uid)
+        intent.putExtra(USER_EMAIL, eg.username)
+        intent.putExtra("subid", eg.subid)
         intent.putExtra("avatar", R.drawable.emptyavatar)
         startActivity(intent)
     }
