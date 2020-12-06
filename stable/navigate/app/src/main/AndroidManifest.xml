@@ -21,12 +21,7 @@
 
         <activity android:name="com.example.navigate.LoginActivity" />
         <activity android:name="com.example.navigate.RegistrationActivity" />
-<<<<<<< HEAD
-        <activity android:name="com.example.navigate.ui.home.HomeFragment" />
-        <activity android:name="com.example.navigate.ui.dashboard.DashboardFragment" />
         <activity android:name=".ui.home.CommentSection"/>
-=======
->>>>>>> 48f05c733200569d8b29fcf8c0ec677209ccd033
         <activity android:name=".navapp"/>
 
     </application>
