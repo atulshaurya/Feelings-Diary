@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,7 +18,6 @@ import kotlin.collections.ArrayList
 
 class CommentSection : AppCompatActivity() {
     private var mDatabase: FirebaseDatabase? = null
-    private var listComment: MutableList<Comment>? = null
     private var PostKey: String? = null
 
     var commentList: ArrayList<Comment> = arrayListOf<Comment>()
@@ -40,15 +40,22 @@ class CommentSection : AppCompatActivity() {
         setContentView(R.layout.comment_section)
 
         recycler_view = findViewById<View>(R.id.rv_comment) as RecyclerView
-
+        buildRecyclerView(recycler_view!!)
 
         uid = intent.getStringExtra(USER_ID).toString()
         Log.i("this is the UID", uid)
         username = intent.getStringExtra(USER_EMAIL).toString()
+        var tv1 = findViewById<TextView>(R.id.text_view_1)
+        var tv2 = findViewById<TextView>(R.id.text_view_2)
+
         post = intent.getStringExtra("content").toString()
         s_emoji = intent.getStringExtra("emoji").toString()
         subuid = intent.getStringExtra("subid").toString()
 
+        Log.i("POST HERE", post)
+
+        tv1.text = username
+        tv2.setText(post)
 
         database = FirebaseDatabase.getInstance().getReference("data")
 
@@ -94,6 +101,8 @@ class CommentSection : AppCompatActivity() {
                     var cid = it.key.toString()
                     Log.i("Comment ID", it.key.toString())
                     Log.i("COMMENT", it.value.toString())
+                    var comment = Comment(it.value.toString(), cid, "Anonymous")
+                    commentList.add(comment)
                     buildRecyclerView(recycler_view!!)
                 }
             }

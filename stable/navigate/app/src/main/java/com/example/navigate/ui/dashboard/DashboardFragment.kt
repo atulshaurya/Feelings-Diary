@@ -475,6 +475,7 @@ class DashboardFragment : Fragment() {
             putString("content", post)
         }
         val pubfeed = HomeFragment()
+
         //pubfeed.arguments = bundle
 
 
