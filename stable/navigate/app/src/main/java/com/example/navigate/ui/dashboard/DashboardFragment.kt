@@ -60,7 +60,7 @@ class DashboardFragment : Fragment() {
         username = activity?.intent?.getStringExtra(USER_EMAIL)!!
 
         var txt = view.findViewById<TextView>(R.id.textView2)
-        var str = "Hi" + username
+        var str = "Hi " + username
 
         txt.text = str
 
