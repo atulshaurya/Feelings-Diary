@@ -21,24 +21,25 @@
     <!--    </LinearLayout>-->
 
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/nav_view"
-        android:layout_width="0dp"
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="0dp"
-        android:layout_marginEnd="0dp"
-        android:background="?android:attr/windowBackground"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:menu="@menu/bottom_nav_menu" />
+        android:layout_below="@id/editTextTextMultiLine2"
+        android:layout_marginStart="141dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="124dp"
+        android:text="Save to Diary"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editTextTextMultiLine2"
+        app:layout_constraintVertical_bias="0.0" />
 
 
     <EditText
         android:id="@+id/editTextTextMultiLine2"
         android:layout_width="229dp"
         android:layout_height="42dp"
-        android:layout_below="@id/textView"
         android:layout_marginStart="83dp"
         android:layout_marginTop="310dp"
         android:layout_marginEnd="83dp"
@@ -53,6 +54,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+<<<<<<< HEAD
+=======
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
@@ -99,80 +102,104 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+>>>>>>> 60b951b9dd9a099f9eda3b6d9526ea26599a7310
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="30dp"
         android:layout_height="38dp"
-        android:scaleType="fitXY"
-        android:adjustViewBounds="true"
         android:layout_marginStart="83dp"
         android:layout_marginTop="50dp"
         android:layout_marginEnd="298dp"
         android:layout_marginBottom="444dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
         app:srcCompat="@drawable/first_mood" />
 
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="30dp"
         android:layout_height="38dp"
-        android:scaleType="fitXY"
         android:layout_marginStart="134dp"
         android:layout_marginTop="50dp"
         android:layout_marginEnd="247dp"
         android:layout_marginBottom="444dp"
+        android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
         app:srcCompat="@drawable/second_mood" />
 
     <ImageView
         android:id="@+id/imageView5"
         android:layout_width="30dp"
         android:layout_height="38dp"
-        android:scaleType="fitXY"
         android:layout_marginStart="240dp"
         android:layout_marginTop="50dp"
         android:layout_marginEnd="141dp"
         android:layout_marginBottom="444dp"
+        android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
         app:srcCompat="@drawable/fourth_mood" />
 
     <ImageView
         android:id="@+id/imageView6"
         android:layout_width="30dp"
         android:layout_height="38dp"
-        android:scaleType="fitXY"
         android:layout_marginStart="290dp"
         android:layout_marginTop="50dp"
         android:layout_marginEnd="91dp"
         android:layout_marginBottom="444dp"
+        android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
         app:srcCompat="@drawable/fifth_mood" />
 
     <ImageView
         android:id="@+id/imageView7"
         android:layout_width="30dp"
         android:layout_height="38dp"
-        android:scaleType="fitXY"
         android:layout_marginStart="190dp"
         android:layout_marginTop="50dp"
         android:layout_marginEnd="191dp"
         android:layout_marginBottom="444dp"
+        android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
         app:srcCompat="@drawable/third_mood" />
+
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="54dp"
+        android:layout_marginEnd="270dp"
+        android:layout_marginBottom="645dp"
+        android:text="Hi Guest,"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
+        android:background="?android:attr/windowBackground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:menu="@menu/bottom_nav_menu" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

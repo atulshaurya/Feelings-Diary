@@ -56,7 +56,7 @@ class HomeFragment : Fragment(), MyAdapter.ItemClickListener {
             post = ""
         }
 
-        val queryRef = database
+        val queryRef = database.orderByPriority()
 
         queryRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
