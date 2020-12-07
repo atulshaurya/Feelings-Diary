@@ -16,6 +16,9 @@ class NotificationsFragment : Fragment() {
 
     private lateinit var notificationsViewModel: NotificationsViewModel
 
+    /* The notifications fragment class is displaying a random inspirational quote related
+    * to mental health so people have little reminders that their feelings are valid */
+
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
@@ -71,7 +74,6 @@ class NotificationsFragment : Fragment() {
             39 -> textView.text = "You don’t have to control your thoughts. You just have to stop letting them control you."
             40 -> textView.text = "Don’t believe everything you think."
         }
-
 
         return root
     }

@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.navigate.ExampleItem
 import com.example.navigate.R
 
+/* The adapter class for the public feed to be able to show each element of the post such as the username,
+* the avatar, the feeling and the post */
 
 class MyAdapter(private val exampleList: List<ExampleItem>,
                 private var listener: ItemClickListener) :
@@ -23,11 +25,8 @@ class MyAdapter(private val exampleList: List<ExampleItem>,
 
         init {
             imageView1 = itemView.findViewById(R.id.imageView4)
-
             imageView2 = itemView.findViewById(R.id.imageView9)
-
             textView1= itemView.findViewById(R.id.text_view_1)
-
             textView2 = itemView.findViewById(R.id.text_view_2)
 
             itemView.setOnClickListener(this)
@@ -44,26 +43,18 @@ class MyAdapter(private val exampleList: List<ExampleItem>,
         fun onClick(position: Int)
     }
 
-
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExampleViewHolder {
-
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.my_row,
             parent, false)
         return ExampleViewHolder(itemView)
 
     }
 
-
-
     override fun getItemCount(): Int {
         return exampleList.size
     }
 
-
-
     override fun onBindViewHolder(holder: ExampleViewHolder, position: Int) {
-
         val currentItem = exampleList[position]
         if(currentItem.avatar!=null){
             holder.imageView1.setImageResource(currentItem.avatar!!.toInt())
@@ -76,7 +67,6 @@ class MyAdapter(private val exampleList: List<ExampleItem>,
         holder.textView1.text = currentItem.username
         holder.textView2.text = currentItem.feelings
         holder.textView1.text = currentItem.username
-
     }
 
 }

@@ -13,7 +13,8 @@ import com.example.navigate.LoginActivity
 import com.google.firebase.auth.FirebaseAuth
 
 class RegistrationActivity : AppCompatActivity()  {
-
+    /* The registration activity, where the user will be able to register a new account
+    * and be added to the firebase */
 
     private var emailTV: EditText? = null
     private var passwordTV: EditText? = null

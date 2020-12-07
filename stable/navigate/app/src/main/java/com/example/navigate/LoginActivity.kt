@@ -42,7 +42,7 @@ class LoginActivity : AppCompatActivity()  {
         loginBtn!!.setOnClickListener { loginUserAccount() }
     }
 
-    // TODO: Allow the user to log into their account
+    // Allows the user to log into their account
     // If the email and password are not empty, try to log in
     // If the login is successful, store info into intent and launch DashboardActivity
     private fun loginUserAccount() {
@@ -59,9 +59,6 @@ class LoginActivity : AppCompatActivity()  {
             Toast.makeText(applicationContext, "Please enter password!", Toast.LENGTH_LONG).show()
             return
         }
-        /*if (userPassword.toString().length < 4 || userPassword.toString().length > 8){
-            Toast.makeText(applicationContext, "Password must be 4-8 characters long!", Toast.LENGTH_LONG).show()
-        }*/
 
         mAuth!!.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
@@ -85,7 +82,6 @@ class LoginActivity : AppCompatActivity()  {
                     ).show()
                 }
             }
-
     }
 
     companion object {

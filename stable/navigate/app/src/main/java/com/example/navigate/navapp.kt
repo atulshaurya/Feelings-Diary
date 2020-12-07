@@ -10,6 +10,8 @@ import androidx.navigation.ui.setupWithNavController
 
 class navapp : AppCompatActivity() {
 
+    /* The navapp is the navigation bar at the bottom of the app so the user is able to
+    * navigate through the app */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.nav_app)

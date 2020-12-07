@@ -1,14 +1,13 @@
 package com.example.navigate.ui.home
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.navigate.R
 
+/* This comment adapter will allow us to create a view of comments by using the recycler view */
 class CommentAdapter(private val mData: List<Comment>) :
         RecyclerView.Adapter<CommentAdapter.CommentViewHolder?>() {
 

@@ -14,6 +14,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main)
 
+        /* Initializes the view for registering a new account of logging in to one already
+        * created */
         initializeViews()
         registerBtn!!.setOnClickListener {
             val intent = Intent(this@MainActivity, RegistrationActivity::class.java)
