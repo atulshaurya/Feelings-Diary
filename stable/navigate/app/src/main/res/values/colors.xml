@@ -8,9 +8,9 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name= "gray">#DDDCDB</color>
-=======
     <color name="yellow">#FFD700</color>
     <color name="beige">#F2EBDF</color>
     <color name="greyish">#DDDCDB</color>
->>>>>>> f233314cc76f64aad558049a03c12b43cd7e5eaa
+    <color name="darkgrey">#C1C0C0</color>
+    <color name="dark">#979696</color>
 </resources>
