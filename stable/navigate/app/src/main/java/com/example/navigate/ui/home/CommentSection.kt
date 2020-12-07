@@ -40,7 +40,7 @@ class CommentSection : AppCompatActivity() {
         setContentView(R.layout.comment_section)
 
         recycler_view = findViewById<View>(R.id.rv_comment) as RecyclerView
-        buildRecyclerView(recycler_view!!)
+        //buildRecyclerView(recycler_view!!)
 
         uid = intent.getStringExtra(USER_ID).toString()
         Log.i("this is the UID", uid)
@@ -68,14 +68,11 @@ class CommentSection : AppCompatActivity() {
         button.setOnClickListener{
             val comment = commentText.text.toString()
 
-
-
             //database.child(uid).child(id!!).push().key
             //val newItem = ExampleItem(uid, subuid, R.drawable.emptyavatar.toLong(), s_emoji.toLong(), username, post)
             database.child(uid).child(subuid).child("comments").push().setValue(comment)
 
             showMessage("Comment added!")
-
             commentText.setText("")
         }
 
@@ -101,10 +98,12 @@ class CommentSection : AppCompatActivity() {
                     var cid = it.key.toString()
                     Log.i("Comment ID", it.key.toString())
                     Log.i("COMMENT", it.value.toString())
-                    var comment = Comment(it.value.toString(), cid, "Anonymous")
+                    var comment = Comment(it.value.toString(), cid, "Anonymous said:")
                     commentList.add(comment)
-                    buildRecyclerView(recycler_view!!)
                 }
+                var adapter = CommentAdapter(commentList)
+                recycler_view!!.adapter = adapter
+                //buildRecyclerView(recycler_view!!)
             }
 
             override fun onCancelled(error: DatabaseError) {
