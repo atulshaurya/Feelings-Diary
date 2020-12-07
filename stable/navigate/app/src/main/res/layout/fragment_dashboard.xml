@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:layout_centerInParent="true"
     android:gravity="center|clip_vertical|center_horizontal"
+    android:background="@color/beige"
     tools:context=".ui.dashboard.DashboardFragment">
 
     <!--    <LinearLayout-->
@@ -26,15 +27,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/editTextTextMultiLine2"
-        android:layout_marginStart="141dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="124dp"
+        android:layout_marginStart="124dp"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="@color/greyish"
         android:text="Save to Diary"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editTextTextMultiLine2"
-        app:layout_constraintVertical_bias="0.0" />
-
+        app:layout_constraintTop_toBottomOf="@id/editTextTextMultiLine2" />
 
     <EditText
         android:id="@+id/editTextTextMultiLine2"
@@ -116,7 +114,6 @@
         android:layout_width="30dp"
         android:layout_height="38dp"
         android:layout_marginStart="190dp"
-        android:layout_marginTop="50dp"
         android:layout_marginEnd="191dp"
         android:layout_marginBottom="444dp"
         android:scaleType="fitXY"
@@ -130,15 +127,14 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="45dp"
-        android:layout_marginTop="54dp"
-        android:layout_marginEnd="270dp"
-        android:layout_marginBottom="645dp"
+        android:layout_marginStart="84dp"
+        android:layout_marginTop="127dp"
+        android:layout_marginEnd="256dp"
+        android:layout_marginBottom="572dp"
         android:text="Hi Guest,"
-        android:textSize="24sp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
@@ -157,10 +153,16 @@
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="83dp"
-        tools:layout_editor_absoluteY="194dp" />
+        android:layout_width="217dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="113dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="81dp"
+        android:text="How are you feeling?"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

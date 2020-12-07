@@ -119,7 +119,7 @@ class HomeFragment : Fragment(), MyAdapter.ItemClickListener {
             // The example item
             var egi = ExampleItem(uid, subid, (avatar), emoji, username, feelings)
 
-            exampleList.add(egi)
+            exampleList.add(0,egi)
         }
     }
 

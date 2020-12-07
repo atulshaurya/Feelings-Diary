@@ -57,11 +57,7 @@ class MyAdapter(private val exampleList: List<ExampleItem>,
 
 
     override fun getItemCount(): Int {
-        return if(exampleList.size > list_limit){
-            list_limit;
-        } else {
-            exampleList.size
-        }
+        return exampleList.size
     }
 
 

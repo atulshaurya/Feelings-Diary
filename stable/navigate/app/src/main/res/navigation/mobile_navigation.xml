@@ -14,12 +14,12 @@
     <fragment
         android:id="@+id/navigation_dashboard"
         android:name="com.example.navigate.ui.dashboard.DashboardFragment"
-        android:label="Add"
+        android:label="Add New Diary Entry"
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
         android:id="@+id/navigation_notifications"
         android:name="com.example.navigate.ui.notifications.NotificationsFragment"
-        android:label="Calendar"
+        android:label="Inspiration"
         tools:layout="@layout/fragment_notifications" />
 </navigation>
