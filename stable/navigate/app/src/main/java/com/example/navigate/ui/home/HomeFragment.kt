@@ -81,12 +81,13 @@ class HomeFragment : Fragment(), MyAdapter.ItemClickListener {
             }
         })
 
+        // Updates the public feed as soon as a new post is added.
         buildRecyclerView(recycler_view)
 
         return view
     }
 
-    /* This method will be adding each post to the view as a new item from the recycler view */
+    /* Receives a snapshot of the database and adds each post to the recycler view */
     private fun addToView(ds: DataSnapshot, key: String?) {
         ds.children.forEach {
             subid = it.key.toString()
@@ -110,29 +111,6 @@ class HomeFragment : Fragment(), MyAdapter.ItemClickListener {
         return if (i.toLong() == this) i else null
     }
 
-    private fun startMainActivity() {
-        val mainintent = Intent(activity, DashboardFragment::class.java)
-        mainintent.putExtra(USER_ID, uid)
-        mainintent.putExtra(USER_EMAIL, username)
-        startActivity(mainintent)
-
-    }
-
-    private fun saveData() {
-        val sharedPreferences = activity?.getSharedPreferences("shared preferences", MODE_PRIVATE)
-        val editor = sharedPreferences?.edit()
-        val gson = Gson()
-        Log.i(TAG, "json list in save data before erase " + sharedPreferences?.getString(e_List, null))
-        val json: String = gson.toJson(exampleList)
-        Log.i(TAG, "json list in save data " + json)
-        if (editor != null) {
-            editor.putString(e_List, json)
-        }
-        if (editor != null) {
-            editor.apply()
-        }
-    }
-
     /* Builds the recycler view */
     private fun buildRecyclerView(recycler_view: RecyclerView){
         var adapter = MyAdapter(exampleList, this)
@@ -141,8 +119,7 @@ class HomeFragment : Fragment(), MyAdapter.ItemClickListener {
         recycler_view.setHasFixedSize(true)
     }
 
-    /* This onClick method will open up each post with a comment section where the users
-    * can comment anything they want */
+    /* Gets the position of the post the user clicked on and allows user to comment on it. */
     override fun onClick(position: Int) {
         val eg: ExampleItem = exampleList.get(position)
         val intent = Intent(activity, CommentSection::class.java)

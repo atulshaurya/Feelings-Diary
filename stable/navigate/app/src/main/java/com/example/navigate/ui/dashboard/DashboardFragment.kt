@@ -60,6 +60,8 @@ class DashboardFragment : Fragment() {
         uid = activity?.intent?.getStringExtra(USER_ID).toString()
         Log.i("IDIDIDIDIDIDID", uid.toString())
 
+
+        // Database setup
         database = FirebaseDatabase.getInstance().getReference("data")
         uid = activity?.intent?.getStringExtra(USER_ID)!!
         username = activity?.intent?.getStringExtra(USER_EMAIL)!!
@@ -73,6 +75,8 @@ class DashboardFragment : Fragment() {
 
         Log.i(TAG, "after database")
 
+
+        // Emoji view set up
         imageView2= view.findViewById<View>(R.id.imageView2) as ImageView
         imageView3= view.findViewById<View>(R.id.imageView3) as ImageView
         imageView5= view.findViewById<View>(R.id.imageView5) as ImageView
@@ -299,6 +303,9 @@ class DashboardFragment : Fragment() {
             Log.i("Generated ID", id)
         }
 
+
+        // Database setup to add a new post from the
+        // user, to the public feed view
         database.child(uid).child(id!!).push().key
         val newItem = ExampleItem(uid, id, R.drawable.emptyavatar.toLong(), s_emoji.toLong(), username, post)
 

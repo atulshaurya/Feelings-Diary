@@ -54,7 +54,7 @@ class RegistrationActivity : AppCompatActivity()  {
             return
         }
         if (!validator.validPassword(password)) {
-            Toast.makeText(applicationContext, "Please enter a valid password!", Toast.LENGTH_LONG).show()
+            Toast.makeText(applicationContext, "Please enter a valid password! 4-8 letters or numbers only!", Toast.LENGTH_LONG).show()
             return
         }
 
