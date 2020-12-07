@@ -12,13 +12,14 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.navigate.R
 import kotlin.random.Random
 
+// The following fragment displays quites with reference to mental health and positivity
+
+// The quotes have been taken from the following websites:
+// https://mentalhealthmatch.com/articles/anxiety/inspiring-mental-health-quotes
+// https://www.goodtherapy.org/blog/stop-stigma-12-inspiring-quotes-about-mental-health-0512187
 class NotificationsFragment : Fragment() {
 
     private lateinit var notificationsViewModel: NotificationsViewModel
-
-    /* The notifications fragment class is displaying a random inspirational quote related
-    * to mental health so people have little reminders that their feelings are valid */
-
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,

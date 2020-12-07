@@ -17,6 +17,8 @@ import com.example.navigate.ui.home.HomeFragment
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
+// This is the fragment which can be selected from the bottom navigation bar.
+// It allows a user to add a new post to the public feed.
 
 class DashboardFragment : Fragment() {
     /* Create the emoji variables */

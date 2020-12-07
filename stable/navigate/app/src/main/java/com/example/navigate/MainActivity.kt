@@ -7,6 +7,8 @@ import android.util.Log
 import android.widget.Button
 import com.example.navigate.LoginActivity
 
+// The following code is from Lab7: Firebase lab
+
 class MainActivity : AppCompatActivity() {
     private var registerBtn: Button? = null
     private var loginBtn: Button? = null

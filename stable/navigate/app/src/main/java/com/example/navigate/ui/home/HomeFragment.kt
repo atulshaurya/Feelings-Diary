@@ -17,6 +17,7 @@ import com.google.firebase.database.*
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
+// This fragment is the public feed of this Feelings diary application.
 
 class HomeFragment : Fragment(), MyAdapter.ItemClickListener {
     var exampleList: ArrayList<ExampleItem> = arrayListOf<ExampleItem>()

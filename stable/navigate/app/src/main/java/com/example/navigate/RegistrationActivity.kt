@@ -12,6 +12,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.navigate.LoginActivity
 import com.google.firebase.auth.FirebaseAuth
 
+// The following code is predominantly from Lab7: Firebase lab. There are a few minor changes.
+
 class RegistrationActivity : AppCompatActivity()  {
     /* The registration activity, where the user will be able to register a new account
     * and be added to the firebase */
